@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { TProduct } from './product.interface';
+import { TProduct } from './product.Interface';
 
 const productSchema = new Schema<TProduct>({
   name: { type: String, required: true },
