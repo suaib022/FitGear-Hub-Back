@@ -4,7 +4,6 @@ import sendResponse from '../../Utils/sendResponse';
 import httpStatus from 'http-status';
 
 const createProduct = catchAsync(async (req, res) => {
-  console.log('afsdf');
   const result = await ProductServices.createProductIntoDB(req.body);
 
   sendResponse(res, {
@@ -26,7 +25,49 @@ const getAllProducts = catchAsync(async (req, res) => {
   });
 });
 
+const getSingleProduct = catchAsync(async (req, res) => {
+  const result = await ProductServices.getSingleProductFromDB(
+    req.params.productId,
+  );
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `${result?.name} retrieved successfully !`,
+    data: result,
+  });
+});
+
+const updateSingleProduct = catchAsync(async (req, res) => {
+  const result = await ProductServices.updateSingleProductIntoDB(
+    req.params.productId,
+    req.body,
+  );
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `${result?.name} updated successfully !`,
+    data: result,
+  });
+});
+
+const deleteSingleProduct = catchAsync(async (req, res) => {
+  const result = await ProductServices.deleteSingleProductFromDB(
+    req.params.productId,
+  );
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `${result?.name} deleted successfully !`,
+  });
+});
+
 export const ProductControllers = {
   createProduct,
   getAllProducts,
+  getSingleProduct,
+  updateSingleProduct,
+  deleteSingleProduct,
 };
