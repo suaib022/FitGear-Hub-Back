@@ -3,25 +3,8 @@ import AppError from '../../errors/AppError';
 import { Product } from '../products/product.Model';
 import { TCart } from './cart.Interface';
 import { Cart } from './cart.Model';
-import { TProduct } from '../products/product.Interface';
+
 const createCartIntoDB = async (payload: TCart) => {
-  // const existingProductInCart = await Cart.doesCartItemExist(payload.name);
-  // const existingProductInDB = await Product.doesProductExist(payload.name);
-
-  // if (existingProductInCart) {
-  //   existingProductInCart.quantity += payload.quantity;
-  //   await existingProductInCart.save();
-  //   if (existingProductInCart.quantity > 0) {
-  //     existingProductInCart.inStock = true;
-  //     await existingProductInCart.save();
-  //   }
-
-  //   return existingProductInCart;
-  // } else {
-  //   const result = await Cart.create(payload);
-  //   return result;
-  // }
-
   // check if the product exists in DB
   const existingProductInDB = await Product.findById(payload.product);
   if (!existingProductInDB) {
@@ -111,9 +94,26 @@ const updateSingleCartItemInDB = async (id: string, updatedData: TCart) => {
   return result;
 };
 
+const deleteSingleCartItemFromDB = async (id: string) => {
+  const existingCartItem = await Cart.findById(id);
+  const existingProductInDB = await Product.findById(existingCartItem?.product);
+
+  if (!existingCartItem) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Cart Item Not Found !');
+  }
+
+  existingProductInDB!.quantity += existingCartItem.quantity;
+  existingProductInDB!.inStock = true;
+  await existingProductInDB?.save();
+
+  const result = await Cart.findByIdAndDelete(id);
+  return result;
+};
+
 export const CartServices = {
   createCartIntoDB,
   getAllCartItemsFromDB,
   getSingleCartItemFromDB,
   updateSingleCartItemInDB,
+  deleteSingleCartItemFromDB,
 };

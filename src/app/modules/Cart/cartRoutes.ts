@@ -11,4 +11,6 @@ router.get('/:cartId', cartControllers.getSingleCart);
 
 router.put('/:cartId', cartControllers.updateSingleCart);
 
+router.delete('/:cartId', cartControllers.deleteSingleCart);
+
 export const CartRoutes = router;

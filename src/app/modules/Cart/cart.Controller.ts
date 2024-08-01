@@ -50,9 +50,22 @@ const updateSingleCart = catchAsync(async (req, res) => {
   });
 });
 
+const deleteSingleCart = catchAsync(async (req, res) => {
+  const result = await CartServices.deleteSingleCartItemFromDB(
+    req.params.cartId,
+  );
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `${result?.name} deleted successfully from cart !`,
+  });
+});
+
 export const cartControllers = {
   createCart,
   getAllCart,
   getSingleCart,
   updateSingleCart,
+  deleteSingleCart,
 };
