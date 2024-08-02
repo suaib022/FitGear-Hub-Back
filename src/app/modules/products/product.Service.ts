@@ -3,30 +3,24 @@ import AppError from '../../errors/AppError';
 import { TProduct } from './product.Interface';
 import { Product } from './product.Model';
 import { Cart } from '../Cart/cart.Model';
+import QueryBuilder from '../../builders/QueryBuilder';
 
 const createProductIntoDB = async (payload: TProduct) => {
-  // const existingProduct = await Product.doesProductExist(payload.name);
-
-  // if (existingProduct) {
-  //   existingProduct.quantity += payload.quantity;
-  //   await existingProduct.save();
-  //   if (existingProduct.quantity > 0) {
-  //     existingProduct.inStock = true;
-  //     await existingProduct.save();
-  //   }
-
-  //   return existingProduct;
-  // } else {
-  //   const result = await Product.create(payload);
-  //   return result;
-  // }
-
   const result = await Product.create(payload);
   return result;
 };
 
-const getAllProductsFromDB = async () => {
-  const result = await Product.find();
+const getAllProductsFromDB = async (query: Record<string, unknown>) => {
+  const productSearchableFields = ['name', 'category'];
+
+  const productQuery = new QueryBuilder(Product.find(), query)
+    .search(productSearchableFields)
+    .filter()
+    .sort()
+    .paginate()
+    .fields();
+
+  const result = await productQuery.modelQuery;
   return result;
 };
 
@@ -35,17 +29,24 @@ const getSingleProductFromDB = async (id: string) => {
   return result;
 };
 
-const updateSingleProductIntoDB = async (id: string, updatedData: object) => {
+const updateSingleProductIntoDB = async (id: string, updatedData: TProduct) => {
   const existingProduct = await Product.findById(id);
+  const existingCartItem = await Cart.findOne({ product: id });
 
   if (!existingProduct) {
     throw new Error('Product not found!');
   }
+
   const result = await Product.findByIdAndUpdate(
     id,
     { $set: updatedData },
     { new: true },
   );
+
+  if (result!.quantity < existingCartItem!.quantity) {
+    existingCartItem!.quantity = result!.quantity;
+    await existingCartItem?.save();
+  }
 
   if (result!.quantity !== 0) {
     existingProduct.inStock = true;

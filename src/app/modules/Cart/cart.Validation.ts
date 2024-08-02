@@ -1,7 +1,11 @@
 import { z } from 'zod';
 
-const CreateProductValidationSchema = z.object({
+const CreateCartValidationSchema = z.object({
   body: z.object({
+    product: z.string({
+      invalid_type_error: 'Product Id must be a string !',
+      required_error: 'Product Id is required !',
+    }),
     name: z.string({
       invalid_type_error: 'Name must be a string !',
       required_error: 'Name is required !',
@@ -33,8 +37,9 @@ const CreateProductValidationSchema = z.object({
   }),
 });
 
-const updateProductValidationSchema = z.object({
+const updateCartValidationSchema = z.object({
   body: z.object({
+    product: z.string().optional(),
     name: z.string().optional(),
     price: z
       .number()
@@ -50,7 +55,7 @@ const updateProductValidationSchema = z.object({
   }),
 });
 
-export const ProductValidations = {
-  CreateProductValidationSchema,
-  updateProductValidationSchema,
+export const CartValidations = {
+  CreateCartValidationSchema,
+  updateCartValidationSchema,
 };
