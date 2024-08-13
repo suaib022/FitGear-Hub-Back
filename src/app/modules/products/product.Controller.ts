@@ -52,15 +52,30 @@ const updateSingleProduct = catchAsync(async (req, res) => {
   });
 });
 
-const deleteSingleProduct = catchAsync(async (req, res) => {
-  const result = await ProductServices.deleteSingleProductFromDB(
-    req.params.productId,
-  );
+const deleteProduct = catchAsync(async (req, res) => {
+  const { productId } = req.query;
+  if (productId) {
+    const result = await ProductServices.deleteSingleProductFromDB(
+      productId as string,
+    );
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: `${result?.name} deleted successfully !`,
+      data: result,
+    });
+    return;
+  }
+
+  const { ids } = req.body;
+
+  const result = await ProductServices.deleteMultipleProductsFromDB(ids);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: `${result?.name} deleted successfully !`,
+    message: `Selected products deleted successfully !`,
+    data: result,
   });
 });
 
@@ -69,5 +84,5 @@ export const ProductControllers = {
   getAllProducts,
   getSingleProduct,
   updateSingleProduct,
-  deleteSingleProduct,
+  deleteProduct,
 };

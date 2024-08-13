@@ -11,23 +11,23 @@ const createCartIntoDB = async (payload: TCart) => {
     throw new AppError(httpStatus.NOT_FOUND, 'Product not found !');
   }
 
-  // check if there is enough number of product quantity in stock
-  if (existingProductInDB.quantity < payload.quantity) {
-    throw new AppError(
-      httpStatus.NOT_ACCEPTABLE,
-      'Insufficient amount in stock !',
-    );
-  }
+  // // check if there is enough number of product quantity in stock
+  // if (existingProductInDB.quantity < payload.quantity) {
+  //   throw new AppError(
+  //     httpStatus.NOT_ACCEPTABLE,
+  //     'Insufficient amount in stock !',
+  //   );
+  // }
 
-  // update products quantity in DB
-  existingProductInDB.quantity -= payload.quantity;
-  await existingProductInDB.save();
+  // // update products quantity in DB
+  // existingProductInDB.quantity -= payload.quantity;
+  // await existingProductInDB.save();
 
-  // update inStock status if needed
-  if (existingProductInDB.quantity === 0) {
-    existingProductInDB.inStock = false;
-    await existingProductInDB.save();
-  }
+  // // update inStock status if needed
+  // if (existingProductInDB.quantity === 0) {
+  //   existingProductInDB.inStock = false;
+  //   await existingProductInDB.save();
+  // }
 
   const existingCartItem = await Cart.findOne({ product: payload.product });
 
@@ -53,7 +53,7 @@ const getSingleCartItemFromDB = async (id: string) => {
 
 const updateSingleCartItemInDB = async (id: string, updatedData: TCart) => {
   const existingCartItem = await Cart.findById(id);
-  const existingProductInDB = await Product.findById(existingCartItem?.product);
+  // const existingProductInDB = await Product.findById(existingCartItem?.product);
   if (!existingCartItem) {
     throw new AppError(
       httpStatus.NOT_FOUND,
@@ -61,30 +61,30 @@ const updateSingleCartItemInDB = async (id: string, updatedData: TCart) => {
     );
   }
 
-  const cartItemQuantity = existingCartItem.quantity;
-  const updatedCartItemQuantity = updatedData.quantity;
+  // const cartItemQuantity = existingCartItem.quantity;
+  // const updatedCartItemQuantity = updatedData.quantity;
 
-  if (updatedCartItemQuantity > cartItemQuantity) {
-    if (
-      updatedCartItemQuantity - cartItemQuantity >
-      existingProductInDB!.quantity
-    ) {
-      throw new AppError(
-        httpStatus.BAD_REQUEST,
-        'Insufficient amount in stock !',
-      );
-    }
-    existingProductInDB!.quantity -= updatedCartItemQuantity - cartItemQuantity;
-    await existingProductInDB?.save();
-    if (existingProductInDB!.quantity === 0) {
-      existingProductInDB!.inStock = false;
-      await existingProductInDB?.save();
-    }
-  } else if (updatedCartItemQuantity < cartItemQuantity) {
-    existingProductInDB!.quantity += cartItemQuantity - updatedCartItemQuantity;
-    existingProductInDB!.inStock = true;
-    await existingProductInDB?.save();
-  }
+  // if (updatedCartItemQuantity > cartItemQuantity) {
+  //   if (
+  //     updatedCartItemQuantity - cartItemQuantity >
+  //     existingProductInDB!.quantity
+  //   ) {
+  //     throw new AppError(
+  //       httpStatus.BAD_REQUEST,
+  //       'Insufficient amount in stock !',
+  //     );
+  //   }
+  //   existingProductInDB!.quantity -= updatedCartItemQuantity - cartItemQuantity;
+  //   await existingProductInDB?.save();
+  //   if (existingProductInDB!.quantity === 0) {
+  //     existingProductInDB!.inStock = false;
+  //     await existingProductInDB?.save();
+  //   }
+  // } else if (updatedCartItemQuantity < cartItemQuantity) {
+  //   existingProductInDB!.quantity += cartItemQuantity - updatedCartItemQuantity;
+  //   existingProductInDB!.inStock = true;
+  //   await existingProductInDB?.save();
+  // }
 
   const result = await Cart.findByIdAndUpdate(
     id,
@@ -96,15 +96,15 @@ const updateSingleCartItemInDB = async (id: string, updatedData: TCart) => {
 
 const deleteSingleCartItemFromDB = async (id: string) => {
   const existingCartItem = await Cart.findById(id);
-  const existingProductInDB = await Product.findById(existingCartItem?.product);
+  // const existingProductInDB = await Product.findById(existingCartItem?.product);
 
   if (!existingCartItem) {
     throw new AppError(httpStatus.NOT_FOUND, 'Cart Item Not Found !');
   }
 
-  existingProductInDB!.quantity += existingCartItem.quantity;
-  existingProductInDB!.inStock = true;
-  await existingProductInDB?.save();
+  // existingProductInDB!.quantity += existingCartItem.quantity;
+  // existingProductInDB!.inStock = true;
+  // await existingProductInDB?.save();
 
   const result = await Cart.findByIdAndDelete(id);
   return result;

@@ -21,6 +21,8 @@ router.put(
   ProductControllers.updateSingleProduct,
 );
 
-router.delete('/:productId', ProductControllers.deleteSingleProduct);
+router.delete('/delete', ProductControllers.deleteProduct);
+
+// router.delete('/delete-many', ProductControllers.deleteMultipleProducts);
 
 export const ProductRoutes = router;

@@ -4,6 +4,7 @@ import { TProduct } from './product.Interface';
 import { Product } from './product.Model';
 import { Cart } from '../Cart/cart.Model';
 import QueryBuilder from '../../builders/QueryBuilder';
+import { Types } from 'mongoose';
 
 const createProductIntoDB = async (payload: TProduct) => {
   const result = await Product.create(payload);
@@ -31,7 +32,7 @@ const getSingleProductFromDB = async (id: string) => {
 
 const updateSingleProductIntoDB = async (id: string, updatedData: TProduct) => {
   const existingProduct = await Product.findById(id);
-  const existingCartItem = await Cart.findOne({ product: id });
+  // const existingCartItem = await Cart.findOne({ product: id });
 
   if (!existingProduct) {
     throw new Error('Product not found!');
@@ -43,10 +44,10 @@ const updateSingleProductIntoDB = async (id: string, updatedData: TProduct) => {
     { new: true },
   );
 
-  if (result!.quantity < existingCartItem!.quantity) {
-    existingCartItem!.quantity = result!.quantity;
-    await existingCartItem?.save();
-  }
+  // if (result!.quantity < existingCartItem!.quantity) {
+  //   existingCartItem!.quantity = result!.quantity;
+  //   await existingCartItem?.save();
+  // }
 
   if (result!.quantity !== 0) {
     existingProduct.inStock = true;
@@ -68,10 +69,22 @@ const deleteSingleProductFromDB = async (id: string) => {
   }
   const result = await Product.findByIdAndDelete(id);
 
-  const existingCartItem = await Cart.findOne({ product: id });
-  if (existingCartItem) {
-    await Cart.deleteOne({ product: id });
-  }
+  // const existingCartItem = await Cart.findOne({ product: id });
+  // if (existingCartItem) {
+  //   await Cart.deleteOne({ product: id });
+  // }
+  return result;
+};
+
+const deleteMultipleProductsFromDB = async (ids: string[]) => {
+  // const objectIds = ids.map((id: string) => new Types.ObjectId(id));
+
+  const validIds = ids.filter((id) => Types.ObjectId.isValid(id));
+
+  const objectIds = validIds.map((id) => new Types.ObjectId(id));
+
+  const result = await Product.deleteMany({ _id: { $in: objectIds } });
+
   return result;
 };
 
@@ -81,4 +94,5 @@ export const ProductServices = {
   getSingleProductFromDB,
   updateSingleProductIntoDB,
   deleteSingleProductFromDB,
+  deleteMultipleProductsFromDB,
 };

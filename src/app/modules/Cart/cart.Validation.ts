@@ -48,10 +48,7 @@ const updateCartValidationSchema = z.object({
     description: z.string().optional(),
     image: z.string().optional(),
     category: z.string().optional(),
-    quantity: z
-      .number()
-      .positive({ message: 'Quantity must be a positive number' })
-      .optional(),
+    quantity: z.number().optional(),
   }),
 });
 
