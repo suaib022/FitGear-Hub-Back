@@ -31,8 +31,6 @@ class QueryBuilder<T> {
     const excludeFields = ['searchTerm', 'sort', 'limit', 'page'];
     excludeFields.forEach((elem) => delete queryObj[elem]);
 
-    console.log({ queryObj });
-
     Object.keys(queryObj).forEach((key) => {
       let value = queryObj[key];
 
@@ -52,7 +50,6 @@ class QueryBuilder<T> {
       } else if (!isNaN(minPrice)) {
         queryObj['price'] = { $gte: minPrice };
       } else if (!isNaN(maxPrice)) {
-        console.log('object');
         queryObj['price'] = { $lte: Number(maxPrice) };
       }
     });
@@ -67,7 +64,7 @@ class QueryBuilder<T> {
 
   sort() {
     const sort =
-      (this?.query?.sort as string)?.split(',')?.join(' ') || '-createdAt';
+      (this?.query?.sort as string)?.split(',')?.join(' ') || 'createdAt';
     this.modelQuery = this.modelQuery.sort(sort as string);
 
     return this;

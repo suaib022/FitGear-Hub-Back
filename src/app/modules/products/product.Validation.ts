@@ -43,7 +43,10 @@ const updateProductValidationSchema = z.object({
     description: z.string().optional(),
     image: z.string().optional(),
     category: z.string().optional(),
-    quantity: z.number().optional(),
+    quantity: z
+      .number()
+      .min(0, { message: 'Quantity must be a non-negative number' })
+      .optional(),
   }),
 });
 
