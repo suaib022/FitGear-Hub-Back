@@ -1,15 +1,11 @@
-import { Model } from 'mongoose';
+import { TCategories } from './product.Constant';
 
 export type TProduct = {
   name: string;
   price: number;
   description: string;
   image: string;
-  category: string;
+  category: TCategories;
   quantity: number;
   inStock?: boolean;
 };
-
-export interface ProductModel extends Model<TProduct> {
-  doesProductExist(name: string): Promise<TProduct | null>;
-}

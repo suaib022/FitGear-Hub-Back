@@ -28,9 +28,37 @@ class QueryBuilder<T> {
   filter() {
     const queryObj = { ...this.query };
 
-    const excludeFields = ['searchTerm', 'sort', 'limit', 'page', 'fields'];
-
+    const excludeFields = ['searchTerm', 'sort', 'limit', 'page'];
     excludeFields.forEach((elem) => delete queryObj[elem]);
+
+    console.log({ queryObj });
+
+    Object.keys(queryObj).forEach((key) => {
+      let value = queryObj[key];
+
+      if (typeof value === 'string' && value.includes(',')) {
+        value = value.split(',').map((item) => item.trim());
+      }
+
+      if (Array.isArray(value)) {
+        queryObj[key] = { $in: value };
+      }
+
+      const minPrice = Number(this.query.minPrice);
+      const maxPrice = Number(this.query.maxPrice);
+
+      if (!isNaN(minPrice) && !isNaN(maxPrice)) {
+        queryObj['price'] = { $gte: minPrice, $lte: maxPrice };
+      } else if (!isNaN(minPrice)) {
+        queryObj['price'] = { $gte: minPrice };
+      } else if (!isNaN(maxPrice)) {
+        console.log('object');
+        queryObj['price'] = { $lte: Number(maxPrice) };
+      }
+    });
+
+    delete queryObj.minPrice;
+    delete queryObj.maxPrice;
 
     this.modelQuery = this.modelQuery.find(queryObj as FilterQuery<T>);
 
@@ -51,15 +79,6 @@ class QueryBuilder<T> {
     const skip = (page - 1) * limit;
 
     this.modelQuery = this.modelQuery.skip(skip).limit(limit);
-
-    return this;
-  }
-
-  fields() {
-    const fields =
-      (this?.query?.fields as string)?.split(',')?.join(' ') || '-__v';
-
-    this.modelQuery = this.modelQuery.select(fields);
 
     return this;
   }

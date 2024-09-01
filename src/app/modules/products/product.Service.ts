@@ -12,14 +12,14 @@ const createProductIntoDB = async (payload: TProduct) => {
 };
 
 const getAllProductsFromDB = async (query: Record<string, unknown>) => {
-  const productSearchableFields = ['name', 'category'];
+  //search, filter(category, price range), sorting(price), clear option, pagination
+  const productSearchableFields = ['name'];
 
   const productQuery = new QueryBuilder(Product.find(), query)
     .search(productSearchableFields)
     .filter()
     .sort()
-    .paginate()
-    .fields();
+    .paginate();
 
   const result = await productQuery.modelQuery;
   return result;
