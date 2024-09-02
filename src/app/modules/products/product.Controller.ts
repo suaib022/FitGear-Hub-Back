@@ -54,6 +54,8 @@ const updateSingleProduct = catchAsync(async (req, res) => {
 
 const deleteProduct = catchAsync(async (req, res) => {
   const { productId } = req.query;
+
+  // in case of deleting single product
   if (productId) {
     const result = await ProductServices.deleteSingleProductFromDB(
       productId as string,
@@ -67,6 +69,7 @@ const deleteProduct = catchAsync(async (req, res) => {
     return;
   }
 
+  // in case of deleting multiple products
   const { ids } = req.body;
 
   const result = await ProductServices.deleteMultipleProductsFromDB(ids);
