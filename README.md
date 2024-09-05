@@ -81,9 +81,9 @@ To use the FitGear Hub Back, follow these steps:
 
 ## 1. Create Product
 
-Route: /api/products (POST)
+**Route**: **`/api/products`** (POST)
 
-Request Body:
+**Request Body**:
 
 ```json
 {
@@ -96,7 +96,7 @@ Request Body:
 }
 ```
 
-Response:
+**Response**:
 
 ```json
 {
@@ -120,9 +120,9 @@ Response:
 
 ## 2. Get a Product
 
-Route: /api/products/:productId (GET)
+**Route**: **`/api/products/:productId`** (GET)
 
-Response :
+**Response** :
 
 ```json
 {
@@ -146,9 +146,9 @@ Response :
 
 ## 3. Get all Products
 
-Route: /api/products (GET)
+**Route**: **`/api/products`** (GET)
 
-Response :
+**Response** :
 
 ```json
 {
@@ -187,9 +187,9 @@ Response :
 
 ## 4. Update a Product
 
-Route: /api/products/:productId (PUT)
+**Route**: **`/api/products/:productId`** (PUT)
 
-Request Body:
+**Request Body**:
 
 ```json
 {
@@ -197,7 +197,7 @@ Request Body:
 }
 ```
 
-Response :
+**Response** :
 
 ```json
 {
@@ -221,9 +221,9 @@ Response :
 
 ## 5. Delete a Product
 
-Route: /api/products/delete?productId=66d9f1439a6530b4a4ad72ee (DELETE)
+**Route**: **`/api/products/delete?productId=66d9f1439a6530b4a4ad72ee`** (DELETE)
 
-Response :
+**Response** :
 
 ```json
 {
@@ -247,9 +247,9 @@ Response :
 
 ## 5. Delete Multiple Products
 
-Route: /api/products/delete (DELETE)
+**Route**: **`/api/products/delete`** (DELETE)
 
-Request Body:
+**Request Body**:
 
 ```json
 {
@@ -261,7 +261,7 @@ Request Body:
 }
 ```
 
-Response :
+**Response** :
 
 ```json
 {
