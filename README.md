@@ -85,6 +85,7 @@ Route: /api/products (POST)
 
 Request Body:
 
+\`\`\`json
 {
 "name": "Adjustable Dumbbells",
 "price": 99.99,
@@ -93,9 +94,11 @@ Request Body:
 "category": "Strength",
 "quantity": 150,
 }
+\`\`\`
 
 Response:
 
+\`\`\`json
 {
 "success": true,
 "message": "Product Created successfully !",
@@ -113,6 +116,7 @@ Response:
 "\_\_v": 0
 }
 }
+\`\`\`
 
 ## 2. Get a Product
 
@@ -120,6 +124,7 @@ Route: /api/products/:productId (GET)
 
 Response :
 
+\`\`\`json
 {
 "success": true,
 "message": "Adjustable Dumbbells retrieved successfully !",
@@ -137,6 +142,7 @@ Response :
 "\_\_v": 0
 }
 }
+\`\`\`
 
 ## 3. Get all Products
 
@@ -144,6 +150,7 @@ Route: /api/products (GET)
 
 Response :
 
+\`\`\`json
 {
 "success": true,
 "message": "Products retrieved successfully !",
@@ -176,6 +183,7 @@ Response :
 },
 ]
 }
+\`\`\`
 
 ## 4. Update a Product
 
@@ -183,12 +191,15 @@ Route: /api/products/:productId (PUT)
 
 Request Body:
 
+\`\`\`json
 {
 "price": 1000
 }
+\`\`\`
 
 Response :
 
+\`\`\`json
 {
 "success": true,
 "message": "Adjustable Dumbbells updated successfully !",
@@ -206,6 +217,7 @@ Response :
 "\_\_v": 0
 }
 }
+\`\`\`
 
 ## 5. Delete a Product
 
@@ -213,6 +225,7 @@ Route: /api/products/delete?productId=66d9f1439a6530b4a4ad72ee (DELETE)
 
 Response :
 
+\`\`\`json
 {
 "success": true,
 "message": "Adjustable Dumbbells deleted successfully !",
@@ -230,18 +243,23 @@ Response :
 "\_\_v": 0
 }
 }
+\`\`\`
 
 ## 5. Delete Multiple Products
 
 Route: /api/products/delete (DELETE)
 
 Request Body:
+
+\`\`\`json
 {
 "ids" : ["66d9f2ff9a6530b4a4ad72fc", "66d9f2fe9a6530b4a4ad72fa", "66d9f2fd9a6530b4a4ad72f8"]
 }
+\`\`\`
 
 Response :
 
+\`\`\`json
 {
 "success": true,
 "message": "Selected products deleted successfully !",
@@ -250,6 +268,7 @@ Response :
 "deletedCount": 3
 }
 }
+\`\`\`
 
 ---
 
