@@ -2,7 +2,6 @@ import httpStatus from 'http-status';
 import AppError from '../../errors/AppError';
 import { TProduct } from './product.Interface';
 import { Product } from './product.Model';
-import { Cart } from '../Cart/cart.Model';
 import QueryBuilder from '../../builders/QueryBuilder';
 import { Types } from 'mongoose';
 
