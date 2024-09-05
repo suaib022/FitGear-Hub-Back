@@ -85,38 +85,38 @@ Route: /api/products (POST)
 
 Request Body:
 
-\`\`\`json
+```json
 {
-"name": "Adjustable Dumbbells",
-"price": 99.99,
-"description": "A pair of adjustable dumbbells with a weight range of 5-52.5 lbs. Ideal for versatile strength training.",
-"image": "https://example.com/images/adjustable-dumbbells.jpg",
-"category": "Strength",
-"quantity": 150,
+  "name": "Adjustable Dumbbells",
+  "price": 99.99,
+  "description": "A pair of adjustable dumbbells with a weight range of 5-52.5 lbs. Ideal for versatile strength training.",
+  "image": "https://example.com/images/adjustable-dumbbells.jpg",
+  "category": "Strength",
+  "quantity": 150
 }
-\`\`\`
+```
 
 Response:
 
-\`\`\`json
+```json
 {
-"success": true,
-"message": "Product Created successfully !",
-"data": {
-"name": "Adjustable Dumbbells",
-"price": 99.99,
-"description": "A pair of adjustable dumbbells with a weight range of 5-52.5 lbs. Ideal for versatile strength training.",
-"image": "https://example.com/images/adjustable-dumbbells.jpg",
-"category": "Strength",
-"quantity": 150,
-"inStock": true,
-"\_id": "66d9f1439a6530b4a4ad72ee",
-"createdAt": "2024-09-05T17:58:27.311Z",
-"updatedAt": "2024-09-05T17:58:27.311Z",
-"\_\_v": 0
+  "success": true,
+  "message": "Product Created successfully !",
+  "data": {
+    "name": "Adjustable Dumbbells",
+    "price": 99.99,
+    "description": "A pair of adjustable dumbbells with a weight range of 5-52.5 lbs. Ideal for versatile strength training.",
+    "image": "https://example.com/images/adjustable-dumbbells.jpg",
+    "category": "Strength",
+    "quantity": 150,
+    "inStock": true,
+    "_id": "66d9f1439a6530b4a4ad72ee",
+    "createdAt": "2024-09-05T17:58:27.311Z",
+    "updatedAt": "2024-09-05T17:58:27.311Z",
+    "__v": 0
+  }
 }
-}
-\`\`\`
+```
 
 ## 2. Get a Product
 
@@ -124,25 +124,25 @@ Route: /api/products/:productId (GET)
 
 Response :
 
-\`\`\`json
+```json
 {
-"success": true,
-"message": "Adjustable Dumbbells retrieved successfully !",
-"data": {
-"\_id": "66d9f1439a6530b4a4ad72ee",
-"name": "Adjustable Dumbbells",
-"price": 99.99,
-"description": "A pair of adjustable dumbbells with a weight range of 5-52.5 lbs. Ideal for versatile strength training.",
-"image": "https://example.com/images/adjustable-dumbbells.jpg",
-"category": "Strength",
-"quantity": 150,
-"inStock": true,
-"createdAt": "2024-09-05T17:58:27.311Z",
-"updatedAt": "2024-09-05T17:58:27.311Z",
-"\_\_v": 0
+  "success": true,
+  "message": "Adjustable Dumbbells retrieved successfully !",
+  "data": {
+    "_id": "66d9f1439a6530b4a4ad72ee",
+    "name": "Adjustable Dumbbells",
+    "price": 99.99,
+    "description": "A pair of adjustable dumbbells with a weight range of 5-52.5 lbs. Ideal for versatile strength training.",
+    "image": "https://example.com/images/adjustable-dumbbells.jpg",
+    "category": "Strength",
+    "quantity": 150,
+    "inStock": true,
+    "createdAt": "2024-09-05T17:58:27.311Z",
+    "updatedAt": "2024-09-05T17:58:27.311Z",
+    "__v": 0
+  }
 }
-}
-\`\`\`
+```
 
 ## 3. Get all Products
 
@@ -150,40 +150,40 @@ Route: /api/products (GET)
 
 Response :
 
-\`\`\`json
+```json
 {
-"success": true,
-"message": "Products retrieved successfully !",
-"data": [
-{
-"\_id": "66cd998d5fe63c8d0fab8700",
-"name": "Treadmill",
-"price": 2199,
-"description": "High-performance treadmills designed for serious runners and casual users alike. They feature multiple incline levels, advanced cushioning systems, and interactive touchscreens for streaming workouts.",
-"image": "https://i.ibb.co/yykqNz3/Stock-Cake-Modern-Treadmill-Design-1724742141.jpg",
-"category": "Cardio",
-"quantity": 0,
-"inStock": false,
-"createdAt": "2024-08-27T09:17:01.947Z",
-"updatedAt": "2024-09-01T11:56:33.449Z",
-"**v": 0
-},
-{
-"\_id": "66cd9ca05fe63c8d0fab8729",
-"name": "Elliptical Trainer",
-"price": 1499,
-"description": "Smooth, low-impact elliptical machines that provide a full-body workout. Equipped with adjustable resistance levels and pre-programmed workouts, ideal for all fitness levels.",
-"image": "https://i.ibb.co/LhczCCh/3d-gym-equipment.jpg",
-"category": "Cardio",
-"quantity": 0,
-"inStock": false,
-"createdAt": "2024-08-27T09:30:08.361Z",
-"updatedAt": "2024-09-01T11:56:34.274Z",
-"**v": 0
-},
-]
+  "success": true,
+  "message": "Products retrieved successfully !",
+  "data": [
+    {
+      "_id": "66cd998d5fe63c8d0fab8700",
+      "name": "Treadmill",
+      "price": 2199,
+      "description": "High-performance treadmills designed for serious runners and casual users alike. They feature multiple incline levels, advanced cushioning systems, and interactive touchscreens for streaming workouts.",
+      "image": "https://i.ibb.co/yykqNz3/Stock-Cake-Modern-Treadmill-Design-1724742141.jpg",
+      "category": "Cardio",
+      "quantity": 0,
+      "inStock": false,
+      "createdAt": "2024-08-27T09:17:01.947Z",
+      "updatedAt": "2024-09-01T11:56:33.449Z",
+      "**v": 0
+    },
+    {
+      "_id": "66cd9ca05fe63c8d0fab8729",
+      "name": "Elliptical Trainer",
+      "price": 1499,
+      "description": "Smooth, low-impact elliptical machines that provide a full-body workout. Equipped with adjustable resistance levels and pre-programmed workouts, ideal for all fitness levels.",
+      "image": "https://i.ibb.co/LhczCCh/3d-gym-equipment.jpg",
+      "category": "Cardio",
+      "quantity": 0,
+      "inStock": false,
+      "createdAt": "2024-08-27T09:30:08.361Z",
+      "updatedAt": "2024-09-01T11:56:34.274Z",
+      "**v": 0
+    }
+  ]
 }
-\`\`\`
+```
 
 ## 4. Update a Product
 
@@ -191,33 +191,33 @@ Route: /api/products/:productId (PUT)
 
 Request Body:
 
-\`\`\`json
+```json
 {
-"price": 1000
+  "price": 1000
 }
-\`\`\`
+```
 
 Response :
 
-\`\`\`json
+```json
 {
-"success": true,
-"message": "Adjustable Dumbbells updated successfully !",
-"data": {
-"\_id": "66d9f1439a6530b4a4ad72ee",
-"name": "Adjustable Dumbbells",
-"price": 1000,
-"description": "A pair of adjustable dumbbells with a weight range of 5-52.5 lbs. Ideal for versatile strength training.",
-"image": "https://example.com/images/adjustable-dumbbells.jpg",
-"category": "Strength",
-"quantity": 150,
-"inStock": true,
-"createdAt": "2024-09-05T17:58:27.311Z",
-"updatedAt": "2024-09-05T18:02:32.961Z",
-"\_\_v": 0
+  "success": true,
+  "message": "Adjustable Dumbbells updated successfully !",
+  "data": {
+    "_id": "66d9f1439a6530b4a4ad72ee",
+    "name": "Adjustable Dumbbells",
+    "price": 1000,
+    "description": "A pair of adjustable dumbbells with a weight range of 5-52.5 lbs. Ideal for versatile strength training.",
+    "image": "https://example.com/images/adjustable-dumbbells.jpg",
+    "category": "Strength",
+    "quantity": 150,
+    "inStock": true,
+    "createdAt": "2024-09-05T17:58:27.311Z",
+    "updatedAt": "2024-09-05T18:02:32.961Z",
+    "__v": 0
+  }
 }
-}
-\`\`\`
+```
 
 ## 5. Delete a Product
 
@@ -225,25 +225,25 @@ Route: /api/products/delete?productId=66d9f1439a6530b4a4ad72ee (DELETE)
 
 Response :
 
-\`\`\`json
+```json
 {
-"success": true,
-"message": "Adjustable Dumbbells deleted successfully !",
-"data": {
-"\_id": "66d9f1439a6530b4a4ad72ee",
-"name": "Adjustable Dumbbells",
-"price": 1000,
-"description": "A pair of adjustable dumbbells with a weight range of 5-52.5 lbs. Ideal for versatile strength training.",
-"image": "https://example.com/images/adjustable-dumbbells.jpg",
-"category": "Strength",
-"quantity": 150,
-"inStock": true,
-"createdAt": "2024-09-05T17:58:27.311Z",
-"updatedAt": "2024-09-05T18:02:32.961Z",
-"\_\_v": 0
+  "success": true,
+  "message": "Adjustable Dumbbells deleted successfully !",
+  "data": {
+    "_id": "66d9f1439a6530b4a4ad72ee",
+    "name": "Adjustable Dumbbells",
+    "price": 1000,
+    "description": "A pair of adjustable dumbbells with a weight range of 5-52.5 lbs. Ideal for versatile strength training.",
+    "image": "https://example.com/images/adjustable-dumbbells.jpg",
+    "category": "Strength",
+    "quantity": 150,
+    "inStock": true,
+    "createdAt": "2024-09-05T17:58:27.311Z",
+    "updatedAt": "2024-09-05T18:02:32.961Z",
+    "__v": 0
+  }
 }
-}
-\`\`\`
+```
 
 ## 5. Delete Multiple Products
 
@@ -251,24 +251,28 @@ Route: /api/products/delete (DELETE)
 
 Request Body:
 
-\`\`\`json
+```json
 {
-"ids" : ["66d9f2ff9a6530b4a4ad72fc", "66d9f2fe9a6530b4a4ad72fa", "66d9f2fd9a6530b4a4ad72f8"]
+  "ids": [
+    "66d9f2ff9a6530b4a4ad72fc",
+    "66d9f2fe9a6530b4a4ad72fa",
+    "66d9f2fd9a6530b4a4ad72f8"
+  ]
 }
-\`\`\`
+```
 
 Response :
 
-\`\`\`json
+```json
 {
-"success": true,
-"message": "Selected products deleted successfully !",
-"data": {
-"acknowledged": true,
-"deletedCount": 3
+  "success": true,
+  "message": "Selected products deleted successfully !",
+  "data": {
+    "acknowledged": true,
+    "deletedCount": 3
+  }
 }
-}
-\`\`\`
+```
 
 ---
 
