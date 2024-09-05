@@ -274,6 +274,9 @@ To use the FitGear Hub Back, follow these steps:
 }
 ```
 
+## Project's Live Link
+**https://fit-gear-hub-back.vercel.app/**
+
 ---
 
 Feel free to review and let me know if there's anything else you'd like to adjust or add!
