@@ -279,4 +279,3 @@ To use the FitGear Hub Back, follow these steps:
 
 ---
 
-Feel free to review and let me know if there's anything else you'd like to adjust or add!
